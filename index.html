@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dopy Store - Le style qui te ressemble</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FFD700',secondary:'#000000'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Montserrat', sans-serif;
+padding-bottom: 60px;
+}
+.logo-text {
+font-family: 'Pacifico', serif;
+}
+.product-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -2px;
+left: 0;
+background-color: #FFD700;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.active-nav::after {
+width: 100%;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Navigation Bar -->
+<nav class="fixed top-0 w-full bg-white shadow-sm z-50">
+<div class="max-w-full mx-auto px-4 py-2 flex justify-between items-center">
+<div class="flex items-center">
+<div class="text-2xl font-bold">
+<span class="logo-text text-primary">Dopy</span>
+<span class="font-bold text-secondary">STORE</span>
+</div>
+</div>
+<div class="hidden md:flex space-x-6">
+<a href="#" class="nav-link active-nav text-secondary hover:text-primary transition-colors">Accueil</a>
+<a href="#collection" class="nav-link text-secondary hover:text-primary transition-colors">Collection</a>
+<a href="#about" class="nav-link text-secondary hover:text-primary transition-colors">À propos</a>
+<a href="#contact" class="nav-link text-secondary hover:text-primary transition-colors">Contact</a>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden bg-white shadow-lg absolute w-full">
+<div class="flex flex-col px-4 py-2 space-y-3">
+<a href="#" class="py-2 text-secondary hover:text-primary transition-colors">Accueil</a>
+<a href="#collection" class="py-2 text-secondary hover:text-primary transition-colors">Collection</a>
+<a href="#contact" class="py-2 text-secondary hover:text-primary transition-colors">Contact</a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="mt-16 relative h-[500px] overflow-hidden">
+<img src="model1.jpg" alt="Collection Dopy Store" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-center text-white px-4">
+<h1 class="text-4xl md:text-5xl font-bold mb-4 text-center">
+<span class="logo-text text-primary">Dopy Store</span>
+<span class="block mt-2">Le style qui te ressemble</span>
+</h1>
+<p class="text-lg mb-8 max-w-lg text-center">Découvrez notre nouvelle collection urbaine et élégante pour exprimer votre personnalité</p>
+</div>
+</section>
+<!-- Collection Section -->
+<section id="collection" class="py-12 px-4 bg-gray-50">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-bold mb-8 text-center">
+<span class="relative inline-block">
+Notre Collection
+<span class="absolute bottom-0 left-0 w-full h-1 bg-primary"></span>
+</span>
+</h2>
+<!-- Products Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Product 1 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="ARTICLE1.jpg" alt="Debardeur uni tandance" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Débardeur uni tendance</h3>
+<p class="text-sm text-gray-600 mb-2" <p>Disponible en noir,blanc et beige Coupe stylée, logo discret.</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">15000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=stylish%20mens%20blazer%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=6&orientation=portrait" alt="Blazer Homme" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Blazer Moderne</h3>
+<p class="text-sm text-gray-600 mb-2">Coupe ajustée et élégante</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">29000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=stylish%20leather%20handbag%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=7&orientation=portrait" alt="Sac à Main" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Sac à Main Cuir</h3>
+<p class="text-sm text-gray-600 mb-2">Finition premium, design intemporel</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">5000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=stylish%20white%20sneakers%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=8&orientation=portrait" alt="Baskets Blanches" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Baskets Urbaines</h3>
+<p class="text-sm text-gray-600 mb-2">Confort et style au quotidien</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">14000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=stylish%20denim%20jacket%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=9&orientation=portrait" alt="Veste en Jean" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Veste en Jean Tendance</h3>
+<p class="text-sm text-gray-600 mb-2">Style décontracté et moderne</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">25000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=elegant%20gold%20jewelry%20set%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=10&orientation=portrait" alt="Bijoux Dorés" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Set Bijoux Dorés</h3>
+<p class="text-sm text-gray-600 mb-2">Élégance et raffinement</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">18000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=stylish%20sunglasses%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=11&orientation=portrait" alt="Lunettes de Soleil" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Lunettes de Soleil</h3>
+<p class="text-sm text-gray-600 mb-2">Protection UV et style assuré</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">6000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=stylish%20beanie%20hat%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=12&orientation=portrait" alt="Bonnet Tendance" class="w-full h-full object-cover">
+<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
+<i class="ri-heart-line text-secondary"></i>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-medium text-secondary">Bonnet Tendance</h3>
+<p class="text-sm text-gray-600 mb-2">Confort et chaleur avec style</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-secondary">13000F</span>
+<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- About Section -->
+<section id="about" class="py-12 px-4">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-bold mb-8 text-center">
+<span class="relative inline-block">
+À propos de Dopy Store
+<span class="absolute bottom-0 left-0 w-full h-1 bg-primary"></span>
+</span>
+</h2>
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="md:w-1/2">
+<img src="leuz.jpg" alt="Boutique Dopy Store" class="w-full h-auto rounded-lg shadow-md">
+</div>
+<div class="md:w-1/2">
+<h3 class="text-2xl font-bold mb-4 text-secondary">Notre Histoire</h3>
+<p class="text-gray-700 mb-4">Dopy Store est née d'une passion pour la mode urbaine et contemporaine. Notre mission est de proposer des vêtements et accessoires qui allient style, qualité et accessibilité pour les jeunes adultes d'aujourd'hui.</p>
+<h3 class="text-2xl font-bold mb-4 text-secondary">Nos Valeurs</h3>
+<div class="space-y-3">
+<div class="flex items-start">
+<div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full mr-3 flex-shrink-0">
+<i class="ri-check-line text-secondary"></i>
+</div>
+<p class="text-gray-700"><span class="font-medium">Authenticité</span> - Nous encourageons chacun à exprimer sa personnalité à travers son style.</p>
+</div>
+<div class="flex items-start">
+<div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full mr-3 flex-shrink-0">
+<i class="ri-check-line text-secondary"></i>
+</div>
+<p class="text-gray-700"><span class="font-medium">Style</span> - Nous suivons les tendances tout en proposant des pièces intemporelles.</p>
+</div>
+<div class="flex items-start">
+<div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full mr-3 flex-shrink-0">
+<i class="ri-check-line text-secondary"></i>
+</div>
+<p class="text-gray-700"><span class="font-medium">Accessibilité</span> - Nous croyons que le style ne devrait pas coûter une fortune.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-12 px-4">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-bold mb-8 text-center">
+<span class="relative inline-block">
+Contactez-nous
+<span class="absolute bottom-0 left-0 w-full h-1 bg-primary"></span>
+</span>
+</h2>
+<div class="flex flex-col md:flex-row gap-8">
+<!-- Contact Info -->
+<div class="md:w-1/2 bg-white p-6 rounded-lg shadow-sm">
+<h3 class="text-2xl font-bold mb-6 text-secondary">Nos Coordonnées</h3>
+<div class="space-y-4">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full mr-4 flex-shrink-0">
+<i class="ri-phone-line text-secondary"></i>
+</div>
+<div>
+<h4 class="font-medium text-secondary">Téléphone / WhatsApp</h4>
+<p class="text-gray-600">+221 77 561 95 39</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full mr-4 flex-shrink-0">
+<i class="ri-mail-line text-secondary"></i>
+</div>
+<div>
+<h4 class="font-medium text-secondary">Email</h4>
+<p class="text-gray-600">cheikhdopy2000@icloud.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full mr-4 flex-shrink-0">
+<i class="ri-map-pin-line text-secondary"></i>
+</div>
+<div>
+<h4 class="font-medium text-secondary">Adresse</h4>
+<p class="text-gray-600">Dakar, Sénégal</p>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-bold mt-8 mb-4 text-secondary">Suivez-nous</h3>
+<div class="flex space-x-4">
+<a href="https://www.instagram.com/leuz_dopy?igsh=ZjdxNWZ2bmZiYnFi" target="_blank" class="w-10 h-10 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="https://www.tiktok.com/@leuz_dopy14?_t=ZM-8xXA2iobq58&_r=1" target="_blank" class="w-10 h-10 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors">
+<i class="ri-tiktok-line"></i>
+</a>
+<a href="https://snapchat.com/t/Fh0k8ySs" target="_blank" class="w-10 h-10 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors">
+<i class="ri-snapchat-line"></i>
+</a>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="md:w-1/2 bg-white p-6 rounded-lg shadow-sm">
+<h3 class="text-2xl font-bold mb-6 text-secondary">Envoyez-nous un message</h3>
+<form id="contact-form">
+<div class="mb-4">
+<label for="name" class="block text-gray-700 mb-2">Nom complet</label>
+<input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:border-primary" placeholder="Votre nom">
+</div>
+<div class="mb-4">
+<label for="email" class="block text-gray-700 mb-2">Email</label>
+<input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:border-primary" placeholder="Votre email">
+</div>
+<div class="mb-4">
+<label for="subject" class="block text-gray-700 mb-2">Sujet</label>
+<input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:border-primary" placeholder="Sujet de votre message">
+</div>
+<div class="mb-6">
+<label for="message" class="block text-gray-700 mb-2">Message</label>
+<textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:border-primary" placeholder="Votre message"></textarea>
+</div>
+<button type="submit" class="w-full py-3 bg-secondary text-white rounded-button hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+Envoyer le message
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Scripts -->
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+if (mobileMenu.classList.contains('hidden')) {
+mobileMenu.classList.remove('hidden');
+mobileMenuButton.innerHTML = '<i class="ri-close-line ri-lg text-secondary"></i>';
+} else {
+mobileMenu.classList.add('hidden');
+mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg text-secondary"></i>';
+}
+});
+// Close mobile menu when clicking on a link
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg text-secondary"></i>';
+});
+});
+});
+</script>
+<script id="contact-form-script">
+document.addEventListener('DOMContentLoaded', function() {
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+// Get form values
+const name = document.getElementById('name').value;
+const email = document.getElementById('email').value;
+const subject = document.getElementById('subject').value;
+const message = document.getElementById('message').value;
+// Basic validation
+if (!name || !email || !subject || !message) {
+// Create and show error message
+const errorDiv = document.createElement('div');
+errorDiv.className = 'p-3 bg-red-100 text-red-700 rounded-button mb-4';
+errorDiv.textContent = 'Veuillez remplir tous les champs.';
+// Insert at top of form
+contactForm.insertBefore(errorDiv, contactForm.firstChild);
+// Remove after 3 seconds
+setTimeout(() => {
+errorDiv.remove();
+}, 3000);
+return;
+}
+// Show success message (in a real app, you would send the data to a server)
+const successDiv = document.createElement('div');
+successDiv.className = 'p-3 bg-green-100 text-green-700 rounded-button mb-4';
+successDiv.textContent = 'Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.';
+// Insert at top of form
+contactForm.insertBefore(successDiv, contactForm.firstChild);
+// Reset form
+contactForm.reset();
+// Remove success message after 3 seconds
+setTimeout(() => {
+successDiv.remove();
+}, 3000);
+});
+});
+</script>
+<script id="smooth-scroll-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+const headerOffset = 70;
+const elementPosition = targetElement.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({
+top: offsetPosition,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="product-interaction-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Product favorite toggle
+const favoriteButtons = document.querySelectorAll('.product-card .ri-heart-line');
+favoriteButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.stopPropagation();
+if (this.classList.contains('ri-heart-line')) {
+this.classList.remove('ri-heart-line');
+this.classList.add('ri-heart-fill');
+this.classList.add('text-primary');
+} else {
+this.classList.remove('ri-heart-fill');
+this.classList.remove('text-primary');
+this.classList.add('ri-heart-line');
+}
+});
+});
+// Product card click
+const productCards = document.querySelectorAll('.product-card');
+productCards.forEach(card => {
+card.addEventListener('click', function() {
+// In a real app, this would navigate to the product detail page
+console.log('Product clicked');
+});
+});
+});
+</script>
+</body>
+</html>
