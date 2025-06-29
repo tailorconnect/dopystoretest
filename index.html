@@ -134,7 +134,7 @@ Votre panier est vide
 <span class="font-medium">Total:</span>
 <span id="cartTotal" class="font-bold">0 FCFA</span>
 </div>
-<a id="whatsappOrder" href="https://wa.me/+221774619539?text=Bonjour,%20je%20souhaite%20commander%20des%20articles%20sur%20DopyStore" target="_blank" class="block bg-primary text-white py-3 !rounded-button text-center font-medium cursor-pointer">
+<a id="whatsappOrder" href="https://wa.me/+221000000000?text=Bonjour,%20je%20souhaite%20commander%20des%20articles%20sur%20DopyStore" target="_blank" class="block bg-primary text-white py-3 !rounded-button text-center font-medium cursor-pointer">
 Commander via WhatsApp
 </a>
 </div>
@@ -240,7 +240,7 @@ cart.forEach(item => {
 orderText += `- ${item.name} x${item.quantity} (${item.price.toLocaleString()} FCFA/unité)\n`;
 });
 orderText += `\nTotal: ${total.toLocaleString()} FCFA`;
-whatsappOrder.href = `https://wa.me/+221772952287?text=${encodeURIComponent(orderText)}`;
+whatsappOrder.href = `https://wa.me/+221775619539?text=${encodeURIComponent(orderText)}`;
 // Add event listeners for quantity buttons
 const decreaseButtons = document.querySelectorAll('.decrease-quantity');
 const increaseButtons = document.querySelectorAll('.increase-quantity');
