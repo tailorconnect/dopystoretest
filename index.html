@@ -61,6 +61,10 @@ width: 100%;
 <a href="#about" class="nav-link text-secondary hover:text-primary transition-colors">À propos</a>
 <a href="#contact" class="nav-link text-secondary hover:text-primary transition-colors">Contact</a>
 </div>
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer relative" id="cartIcon">
+<i class="ri-shopping-cart-line ri-lg"></i>
+<span id="cartCount" class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+</div>
 </div>
 </div>
 <!-- Mobile Menu -->
@@ -94,11 +98,10 @@ Notre Collection
 </h2>
 <!-- Products Grid -->
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-<!-- Product 1 -->
+    <!-- Product 1 -->
 <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
 <div class="relative h-64 overflow-hidden">
 <img src="ARTICLE1.jpg" alt="Debardeur uni tandance" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
 <i class="ri-heart-line text-secondary"></i>
 </div>
 </div>
@@ -107,138 +110,165 @@ Notre Collection
 <p class="text-sm text-gray-600 mb-2" <p>Disponible en noir,blanc et beige Coupe stylée, logo discret.</p>
 <div class="flex justify-between items-center">
 <span class="text-lg font-bold text-secondary">15000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+<button class="add-to-cart bg-primary text-white p-1 !rounded-button w-7 h-7 flex items-center justify-center cursor-pointer" data-id="1" data-name="Débardeur uni tendance" data-price="15000">
+<i class="ri-add-line"></i>
+</div>
+</div>
+</div>
+<!-- Cart Modal -->
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+<div class="bg-white rounded-lg w-11/12 max-h-[80vh] overflow-hidden flex flex-col">
+<div class="p-4 border-b border-gray-200 flex justify-between items-center">
+<h2 class="text-lg font-semibold">Votre Panier</h2>
+<button id="closeCart" class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-close-line ri-lg"></i>
 </button>
 </div>
+<div id="cartItems" class="p-4 overflow-y-auto flex-grow">
+<div class="text-center py-8 text-gray-500">
+Votre panier est vide
 </div>
 </div>
-<!-- Product 2 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=stylish%20mens%20blazer%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=6&orientation=portrait" alt="Blazer Homme" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
-<i class="ri-heart-line text-secondary"></i>
+<div class="p-4 border-t border-gray-200">
+<div class="flex justify-between items-center mb-4">
+<span class="font-medium">Total:</span>
+<span id="cartTotal" class="font-bold">0 FCFA</span>
+</div>
+<a id="whatsappOrder" href="https://wa.me/+221000000000?text=Bonjour,%20je%20souhaite%20commander%20des%20articles%20sur%20DopyStore" target="_blank" class="block bg-primary text-white py-3 !rounded-button text-center font-medium cursor-pointer">
+Commander via WhatsApp
+</a>
 </div>
 </div>
-<div class="p-4">
-<h3 class="text-lg font-medium text-secondary">Blazer Moderne</h3>
-<p class="text-sm text-gray-600 mb-2">Coupe ajustée et élégante</p>
-<div class="flex justify-between items-center">
-<span class="text-lg font-bold text-secondary">29000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
+</div>
+<!-- Cart Functionality -->
+<script id="cartScript">
+document.addEventListener('DOMContentLoaded', function() {
+const cartIcon = document.getElementById('cartIcon');
+const cartModal = document.getElementById('cartModal');
+const closeCart = document.getElementById('closeCart');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const cartCount = document.getElementById('cartCount');
+const whatsappOrder = document.getElementById('whatsappOrder');
+let cart = [];
+// Show/Hide Cart Modal
+cartIcon.addEventListener('click', function() {
+cartModal.classList.remove('hidden');
+});
+closeCart.addEventListener('click', function() {
+cartModal.classList.add('hidden');
+});
+// Add to Cart Functionality
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+addToCartButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.stopPropagation();
+const id = this.getAttribute('data-id');
+const name = this.getAttribute('data-name');
+const price = parseInt(this.getAttribute('data-price'));
+// Show add to cart animation
+const originalText = this.innerHTML;
+this.innerHTML = '<i class="ri-check-line"></i>';
+this.classList.add('bg-green-500');
+setTimeout(() => {
+this.innerHTML = originalText;
+this.classList.remove('bg-green-500');
+}, 500);
+// Check if item already in cart
+const existingItem = cart.find(item => item.id === id);
+if (existingItem) {
+existingItem.quantity += 1;
+} else {
+cart.push({
+id,
+name,
+price,
+quantity: 1
+});
+}
+// Show cart modal
+cartModal.classList.remove('hidden');
+updateCart();
+});
+});
+// Update Cart UI
+function updateCart() {
+// Clear cart items
+cartItems.innerHTML = '';
+if (cart.length === 0) {
+cartItems.innerHTML = '<div class="text-center py-8 text-gray-500">Votre panier est vide</div>';
+cartTotal.textContent = '0 FCFA';
+cartCount.textContent = '0';
+whatsappOrder.classList.add('opacity-50', 'pointer-events-none');
+return;
+}
+// Enable WhatsApp order button
+whatsappOrder.classList.remove('opacity-50', 'pointer-events-none');
+// Calculate total
+let total = 0;
+let itemCount = 0;
+// Create cart items
+cart.forEach(item => {
+const itemTotal = item.price * item.quantity;
+total += itemTotal;
+itemCount += item.quantity;
+const cartItem = document.createElement('div');
+cartItem.className = 'flex justify-between items-center py-3 border-b border-gray-100';
+cartItem.innerHTML = `
+<div class="flex-1">
+<h3 class="font-medium text-sm">${item.name}</h3>
+<p class="text-gray-500 text-xs">${item.price.toLocaleString()} FCFA</p>
+</div>
+<div class="flex items-center">
+<button class="decrease-quantity w-7 h-7 flex items-center justify-center border border-gray-200 !rounded-button cursor-pointer" data-id="${item.id}">
+<i class="ri-subtract-line"></i>
+</button>
+<span class="mx-2 text-sm">${item.quantity}</span>
+<button class="increase-quantity w-7 h-7 flex items-center justify-center border border-gray-200 !rounded-button cursor-pointer" data-id="${item.id}">
+<i class="ri-add-line"></i>
 </button>
 </div>
-</div>
-</div>
-<!-- Product 3 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=stylish%20leather%20handbag%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=7&orientation=portrait" alt="Sac à Main" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
-<i class="ri-heart-line text-secondary"></i>
-</div>
-</div>
-<div class="p-4">
-<h3 class="text-lg font-medium text-secondary">Sac à Main Cuir</h3>
-<p class="text-sm text-gray-600 mb-2">Finition premium, design intemporel</p>
-<div class="flex justify-between items-center">
-<span class="text-lg font-bold text-secondary">5000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
-</button>
-</div>
-</div>
-</div>
-<!-- Product 4 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=stylish%20white%20sneakers%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=8&orientation=portrait" alt="Baskets Blanches" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
-<i class="ri-heart-line text-secondary"></i>
-</div>
-</div>
-<div class="p-4">
-<h3 class="text-lg font-medium text-secondary">Baskets Urbaines</h3>
-<p class="text-sm text-gray-600 mb-2">Confort et style au quotidien</p>
-<div class="flex justify-between items-center">
-<span class="text-lg font-bold text-secondary">14000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
-</button>
-</div>
-</div>
-</div>
-<!-- Product 5 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=stylish%20denim%20jacket%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=9&orientation=portrait" alt="Veste en Jean" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
-<i class="ri-heart-line text-secondary"></i>
-</div>
-</div>
-<div class="p-4">
-<h3 class="text-lg font-medium text-secondary">Veste en Jean Tendance</h3>
-<p class="text-sm text-gray-600 mb-2">Style décontracté et moderne</p>
-<div class="flex justify-between items-center">
-<span class="text-lg font-bold text-secondary">25000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
-</button>
-</div>
-</div>
-</div>
-<!-- Product 6 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=elegant%20gold%20jewelry%20set%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=10&orientation=portrait" alt="Bijoux Dorés" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
-<i class="ri-heart-line text-secondary"></i>
-</div>
-</div>
-<div class="p-4">
-<h3 class="text-lg font-medium text-secondary">Set Bijoux Dorés</h3>
-<p class="text-sm text-gray-600 mb-2">Élégance et raffinement</p>
-<div class="flex justify-between items-center">
-<span class="text-lg font-bold text-secondary">18000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
-</button>
-</div>
-</div>
-</div>
-<!-- Product 7 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=stylish%20sunglasses%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=11&orientation=portrait" alt="Lunettes de Soleil" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
-<i class="ri-heart-line text-secondary"></i>
-</div>
-</div>
-<div class="p-4">
-<h3 class="text-lg font-medium text-secondary">Lunettes de Soleil</h3>
-<p class="text-sm text-gray-600 mb-2">Protection UV et style assuré</p>
-<div class="flex justify-between items-center">
-<span class="text-lg font-bold text-secondary">6000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
-</button>
-</div>
-</div>
-</div>
-<!-- Product 8 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=stylish%20beanie%20hat%20on%20white%20background%2C%20high-end%20fashion%20photography%2C%20professional%20product%20shot%2C%20minimalist%20style&width=500&height=600&seq=12&orientation=portrait" alt="Bonnet Tendance" class="w-full h-full object-cover">
-<div class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm cursor-pointer hover:bg-primary transition-colors">
-<i class="ri-heart-line text-secondary"></i>
-</div>
-</div>
-<div class="p-4">
-<h3 class="text-lg font-medium text-secondary">Bonnet Tendance</h3>
-<p class="text-sm text-gray-600 mb-2">Confort et chaleur avec style</p>
-<div class="flex justify-between items-center">
-<span class="text-lg font-bold text-secondary">13000F</span>
-<button class="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full hover:bg-primary hover:text-secondary transition-colors cursor-pointer">
-</button>
-</div>
-</div>
-</div>
-</div>
+`;
+cartItems.appendChild(cartItem);
+});
+// Update total and count
+cartTotal.textContent = `${total.toLocaleString()} FCFA`;
+cartCount.textContent = itemCount;
+// Update WhatsApp link with order details
+let orderText = 'Bonjour, je souhaite commander les articles suivants sur DopyStore:\n\n';
+cart.forEach(item => {
+orderText += `- ${item.name} x${item.quantity} (${item.price.toLocaleString()} FCFA/unité)\n`;
+});
+orderText += `\nTotal: ${total.toLocaleString()} FCFA`;
+whatsappOrder.href = `https://wa.me/+221772952287?text=${encodeURIComponent(orderText)}`;
+// Add event listeners for quantity buttons
+const decreaseButtons = document.querySelectorAll('.decrease-quantity');
+const increaseButtons = document.querySelectorAll('.increase-quantity');
+decreaseButtons.forEach(button => {
+button.addEventListener('click', function() {
+const id = this.getAttribute('data-id');
+const item = cart.find(item => item.id === id);
+if (item.quantity > 1) {
+item.quantity -= 1;
+} else {
+cart = cart.filter(item => item.id !== id);
+}
+updateCart();
+});
+});
+increaseButtons.forEach(button => {
+button.addEventListener('click', function() {
+const id = this.getAttribute('data-id');
+const item = cart.find(item => item.id === id);
+item.quantity += 1;
+updateCart();
+});
+});
+}
+// Initialize cart
+updateCart();
+});
+</script>
 <!-- About Section -->
 <section id="about" class="py-12 px-4">
 <div class="max-w-6xl mx-auto">
