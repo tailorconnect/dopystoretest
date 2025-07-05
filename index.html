@@ -78,7 +78,7 @@ width: 100%;
 </nav>
 <!-- Hero Section -->
 <section class="mt-16 relative h-[500px] overflow-hidden">
-<img src="model1.jpg" alt="Collection Dopy Store" class="w-full h-full object-cover">
+<img src="couvdopy.jpg" alt="Collection Dopy Store" class="w-full h-full object-cover">
 <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-center text-white px-4">
 <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center">
 <span class="logo-text text-primary">Dopy Store</span>
@@ -100,7 +100,13 @@ Notre Collection
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <!-- Product 1 -->
 <div class="carousel-container">
-  <img id="carousel-image" src="image1.jpg" alt="Image 1" class="carousel-img">
+  <img id="carousel-image" src="dopya1.jpg" alt="Image 1" class="carousel-img">
+
+  <div class="carousel-buttons">
+    <button onclick="changeImage(-1)">◀</button>
+    <button onclick="changeImage(1)">▶</button>
+  </div>
+    <img id="dopya2.jpg" src="dopya1.jpg" alt="Image 2" class="carousel-img">
 
   <div class="carousel-buttons">
     <button onclick="changeImage(-1)">◀</button>
@@ -132,6 +138,7 @@ Notre Collection
   cursor: pointer;
 }
 </style>
+
 
 <script>
 const images = ["image1.jpg", "image2.jpg", "image3.jpg"];
