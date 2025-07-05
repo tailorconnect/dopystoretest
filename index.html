@@ -99,12 +99,38 @@ Notre Collection
 <!-- Products Grid -->
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <!-- Product 1 -->
-<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-<div class="relative h-64 overflow-hidden">
-<img src="ARTICLE1.jpg" alt="Debardeur uni tandance" class="w-full h-full object-cover">
-<i class="ri-heart-line text-secondary"></i>
+<div class="carousel-container">
+  <div class="carousel">
+    <img src="image1.jpg" class="carousel-image" />
+    <img src="image2.jpg" class="carousel-image" />
+    <img src="image3.jpg" class="carousel-image" />
+  </div>
 </div>
-</div>
+
+<style>
+.carousel-container {
+  width: 300px;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  animation: scroll 9s infinite linear;
+}
+
+.carousel-image {
+  width: 300px;
+  height: auto;
+  margin-right: 10px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-310px); }
+  66% { transform: translateX(-620px); }
+  100% { transform: translateX(0); }
+}
+</style>
 <div class="p-4">
 <h3 class="text-lg font-medium text-secondary">Débardeur uni tendance</h3>
 <p class="text-sm text-gray-600 mb-2" <p>Disponible en noir,blanc et beige Coupe stylée, logo discret.</p>
